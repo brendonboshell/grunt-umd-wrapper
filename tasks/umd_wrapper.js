@@ -43,7 +43,7 @@ module.exports = function(grunt) {
                 } else {
                     cjs_req.push("require('"+imp.key+"');");
                 }
-                amd_req.push("'"+imp.key+"'");          
+                amd_req.push("'"+imp.key+"'");
             }
 
             var src = this.source;
@@ -122,7 +122,7 @@ module.exports = function(grunt) {
                         grunt.fail('Syntax error: @html requires the as token. Example: @html file/path as varName', 3);
                     }
                 } else { // ignore - log warn?
-                    return m0;                    
+                    return m0;
                 }
             });
             out = '\n'+out.trim()+'\n';
@@ -163,16 +163,16 @@ module.exports = function(grunt) {
             templatePath = path.join(__dirname, templatePath+'.template');
             if (!grunt.file.isFile(templatePath)) {
                 grunt.fail("Could not find wrapper template: "+options['template']+".", 3);
-            }            
+            }
         }
         var template = grunt.file.read(templatePath);
-        var out = new ModuleProcessor(options).process(f.src, template, options);
-        grunt.file.write(f.dest, out);  
+        var out = new ModuleProcessor(options).process(f.src instanceof Array ? f.src[0] : f.src, template, options);
+        grunt.file.write(f.dest, out);
         grunt.log.writeln('File "' + f.dest + '" created.');
 
     });
 
   });
 
-  
+
 };
